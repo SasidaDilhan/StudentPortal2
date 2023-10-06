@@ -46,10 +46,11 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 
-const mongoURI = "mongodb://localhost:27017/Students";
+const mongoURI =
+  "mongodb+srv://sasindadilhan98:sasindadilhan98@cluster0.dmttay8.mongodb.net/";
 
 mongoose
-  .connect(mongoURI, { useNewUrlPaser: true })
+  .connect(mongoURI, { useNewUrlParser: true })
   .then(() => console.log("mongoDB Connected"))
   .catch((err) => console.log(err));
 
