@@ -87,3 +87,25 @@ users.post("/login", (req, res) => {
 });
 
 //userge profile ek get ekin gnna ona ekt user log wela inn ona ona uta session ekk genarate wela tynna on jwt ek authenticate wela tynna ona
+users.get("/profile", (req, res) => {
+  var decoded = jwt.verify(
+    req.headers["authorization"],
+    process.env.SECRET_KEY
+  );
+
+  User.findOne({
+    _id: decoded._id,
+  })
+    .then((user) => {
+      if (user) {
+        res.jason(user);
+      } else {
+        res.send("user does not exsist");
+      }
+    })
+    .catch((err) => {
+      res.send("error" + err);
+    });
+});
+
+module.exports = users;
