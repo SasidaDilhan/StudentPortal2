@@ -45,3 +45,18 @@ var corsOptions = {
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
+
+const mongoURI = "mongodb://localhost:27017/Students";
+
+mongoose
+  .connect(mongoURI, { useNewUrlPaser: true })
+  .then(() => console.log("mongoDB Connected"))
+  .catch((err) => console.log(err));
+
+var Users = require("./routes/Users");
+
+app.use("/users", Users);
+
+app.listen(port, () => {
+  console.log("listening on port " + port);
+});
