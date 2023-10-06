@@ -60,9 +60,30 @@ users.post("/register", (req, res) => {
 users.post("/login", (req, res) => {
   User.findOne({
     email: req.body.email,
-  }).then((user) => {
-    if (user) {
-    }
-    as;
-  });
+  })
+    .then((user) => {
+      if (user) {
+        if (bcrypt.compareSync(req.body.password, user.password)) {
+          const payload = {
+            _id: user._id,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            email: user.email,
+          };
+          let token = jwt.sign(payload, process.env.SECRET_KEY, {
+            expiresIn: 1440, //methanadi wenne user log wela wedk nokara 1440 ka kalayak hitiyama cookie ek ain wela uw logout wenawa wage wedk
+          });
+          res.send(token);
+        } else {
+          res.json({ error: "user does not exists in the system" });
+        }
+      } else {
+        res.json({ error: "user does not exists in the system" });
+      }
+    })
+    .catch((err) => {
+      res.send("error" + err);
+    });
 });
+
+//userge profile ek get ekin gnna ona ekt user log wela inn ona ona uta session ekk genarate wela tynna on jwt ek authenticate wela tynna ona
