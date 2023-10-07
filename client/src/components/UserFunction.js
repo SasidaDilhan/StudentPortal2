@@ -1,30 +1,30 @@
-import axios from require('axios');
+const axios = require("axios");
 
-export const register = newUser => {
-    return axios 
-        .post('users/register', {
-            first_name: newUser.first_name,
-            last_name: newUser.last_name,
-            email: newUser.email,
-            password: newUser.password
-        })
-        .then(res => {
-            console.log("Registered");
-            window.alert("Registered");
-        })
-}
+export const register = (newUser) => {
+  return axios
+    .post("users/register", {
+      first_name: newUser.first_name,
+      last_name: newUser.last_name,
+      email: newUser.email,
+      password: newUser.password,
+    })
+    .then((res) => {
+      console.log("Registered");
+      window.alert("Registered");
+    });
+};
 
-export const login = user => {
-    return axios
-    .post('users/login', {
-        email:user.email,
-        password:user.password
+export const login = (user) => {
+  return axios
+    .post("users/login", {
+      email: user.email,
+      password: user.password,
     })
-    .then(res => {
-        localStorage.setItem('usertoken', res.data)
-        return res.data
+    .then((res) => {
+      localStorage.setItem("usertoken", res.data);
+      return res.data;
     })
-    .catch(err => {
-        console.log(err)
-    })
-}
+    .catch((err) => {
+      console.log(err);
+    });
+};
