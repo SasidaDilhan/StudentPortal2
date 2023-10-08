@@ -14,17 +14,15 @@ export const register = (newUser) => {
     });
 };
 
-export const login = (user) => {
-  return axios
-    .post("users/login", {
+export const login = async (user) => {
+  try {
+    const res = await axios.post("users/login", {
       email: user.email,
       password: user.password,
-    })
-    .then((res) => {
-      localStorage.setItem("usertoken", res.data);
-      return res.data;
-    })
-    .catch((err) => {
-      console.log(err);
     });
+    localStorage.setItem("usertoken", res.data);
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
 };

@@ -41,7 +41,7 @@ users.post("/register", (req, res) => {
           userData.password = hash;
           User.create(userData)
             .then((user) => {
-              res.json({ status: user.email + "registered" });
+              res.json({ status: user.email + " registered" });
             })
             .catch((err) => {
               res.send("err" + err);
@@ -74,6 +74,7 @@ users.post("/login", (req, res) => {
             expiresIn: 1440, //methanadi wenne user log wela wedk nokara 1440 ka kalayak hitiyama cookie ek ain wela uw logout wenawa wage wedk
           });
           res.send(token);
+          res.json({ status: user.first_name + " Welcome!!" });
         } else {
           res.json({ error: "user does not exists in the system" });
         }
@@ -98,7 +99,7 @@ users.get("/profile", (req, res) => {
   })
     .then((user) => {
       if (user) {
-        res.jason(user);
+        res.json(user);
       } else {
         res.send("user does not exsist");
       }

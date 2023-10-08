@@ -7,7 +7,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Profile from "./components/Profile";
 //import FileUpload from "./components/FileUpload";
-//import AssignmentList from "./components/AssignmentList";
+import AssignmentList from "./components/AssignmentList";
 
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
           <Route path="/register" exact element={<Register />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/profile" exact element={<Profile />} />
+          <Route path="/assignment" exact element={<AssignmentList />} />
         </Routes>
       </Router>
     </div>
