@@ -1,5 +1,5 @@
-import React, { component } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Navbar from "./components/NavBar";
 import Landing from "./components/Landing";
@@ -9,22 +9,20 @@ import Profile from "./components/Profile";
 //import FileUpload from "./components/FileUpload";
 //import AssignmentList from "./components/AssignmentList";
 
-export default class App extends Component {
-  render() {
-    return (
+function App() {
+  return (
+    <div>
       <Router>
-        <div className="App">
-          <Navbar />
-          <Router exact path="/" component={Landing} />
-          <div className="container">
-            <Router exact path="/register" component={Register} />
-            <Router exact path="/login" component={Login} />
-            <Router exact path="/profile" component={Profile} />
-            <Router exact path="/uploads" component={FileUpload} />
-            <Router exact path="/assignmentlist" component={AssignmentList} />
-          </div>
-        </div>
+        <Navbar />
+        <Routes>
+          <Route path="/" exact element={<Landing />} />
+          <Route path="/register" exact element={<Register />} />
+          <Route path="/login" exact element={<Login />} />
+          <Route path="/profile" exact element={<Profile />} />
+        </Routes>
       </Router>
-    );
-  }
+    </div>
+  );
 }
+
+export default App;
