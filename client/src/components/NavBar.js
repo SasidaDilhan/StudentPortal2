@@ -24,7 +24,7 @@ export default class NavBar extends Component {
             </h1>
           </Link>
         </li>
-        <li className="nav-item">
+        <li className="nav nav-tabs">
           <Link to="/register" className="nav-link">
             <h1>
               <img
